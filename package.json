@@ -1,0 +1,29 @@
+{
+  "name": "init",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --timeout 120000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vrnchll/Selenium-Webdriver-PageObject.git"
+  },
+  "author": "vrnchll",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vrnchll/Selenium-Webdriver-PageObject/issues"
+  },
+  "homepage": "https://github.com/vrnchll/Selenium-Webdriver-PageObject#readme",
+  "dependencies": {
+    "node.js": "0.0.1-security",
+    "selenium-pageobject": "^1.2.0-beta",
+    "selenium-webdriver": "^4.0.0-alpha.7"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "jest": "^26.6.3",
+    "mocha": "^8.2.1"
+  }
+}
