@@ -4,7 +4,7 @@ module.exports = class reservedNewInPage {
     driver;
     PAGE_URL = 'https://www.reserved.com/ru/ru/';
     pageContext;
-  
+
     constructor(driver) {
       this.driver = driver;
     }
@@ -22,9 +22,8 @@ module.exports = class reservedNewInPage {
     }
 
     async openSizePanel() {
-      const sizeCriterionButton = await this.driver.findElement(By.className('sc-uJMKN kNRivP'));
+      const sizeCriterionButton = await this.driver.wait(until.elementLocated(By.className('sc-uJMKN kNRivP')));
       await sizeCriterionButton.click();
-      await this.driver.wait(until.elementLocated(By.className('sc-uJMKN kNRivP')));
       return this.pageContext;
     }
   
@@ -35,13 +34,14 @@ module.exports = class reservedNewInPage {
     }
   
     async filterOut() {
-      const filterButton = this.driver.findElement(By.className('sc-jqCOkK beOXlA'));
+      const filterButton = await this.driver.findElement(By.className('sc-jqCOkK beOXlA'));
       await filterButton.click();
+      await this.driver.sleep(5000);
       return this.pageContext;
     }
   
     async getValueFromBlock() {
-      await this.driver.sleep(3000);
+      await this.driver.sleep(5000);
       let receivedValue = await this.driver.wait(until.elementLocated(By.css('#esProductQuantity > span'))).getText();
       return receivedValue;
     }
