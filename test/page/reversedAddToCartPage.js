@@ -1,6 +1,6 @@
 const {Builder, By, Key, until} = require('selenium-webdriver');
 
-module.exports = class reversedPricePage {
+module.exports = class reversedAddToCartPage {
     driver;
     PAGE_URL = 'https://www.reserved.com/ru/ru/';
     pageContext;

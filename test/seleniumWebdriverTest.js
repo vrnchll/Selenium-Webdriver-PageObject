@@ -2,7 +2,7 @@ const {Builder, By, Key, until} = require('selenium-webdriver');
 const assert = require('chai').assert;
 
 const reservedNewInPage = module.require('./page/reservedNewInPage');
-const reversedPricePage = module.require('./page/reversedPricePage');
+const reversedPricePage = module.require('./page/reversedAddToCartPage');
 
 const driver = new Builder().forBrowser('chrome').build();
 driver.manage().window().maximize();
