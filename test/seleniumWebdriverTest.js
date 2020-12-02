@@ -5,6 +5,7 @@ const reservedNewInPage = module.require('./page/reservedNewInPage');
 const reversedPricePage = module.require('./page/reversedPricePage');
 
 const driver = new Builder().forBrowser('chrome').build();
+driver.manage().window().maximize();
 
 describe('Selenium-Webdriver-PageObject test', () => {
 

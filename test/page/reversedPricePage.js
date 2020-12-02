@@ -6,13 +6,13 @@ module.exports = class reversedPricePage {
     pageContext;
   
       constructor(driver) {
-      this.driver = driver;
+        this.driver = driver;
       }
 
       openPage() {
-      this.driver.get(this.PAGE_URL);
-      this.pageContext = this;
-      return this.pageContext;
+        this.driver.get(this.PAGE_URL);
+        this.pageContext = this;
+        return this.pageContext;
       }
 
       async openNewCollection() {
