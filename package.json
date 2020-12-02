@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha seleniumWebdriverTest.test.js"
+    "test": "mocha --timeout 120000"
   },
   "repository": {
     "type": "git",
