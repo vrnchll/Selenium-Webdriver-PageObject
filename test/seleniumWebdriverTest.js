@@ -1,4 +1,4 @@
-const {Builder, By, Key, until} = require('selenium-webdriver');
+﻿const {Builder, By, Key, until} = require('selenium-webdriver');
 const assert = require('chai').assert;
 
 const reservedNewInPage = module.require('./page/reservedNewInPage');
@@ -10,25 +10,27 @@ driver.manage().window().maximize();
 describe('Selenium-Webdriver-PageObject test', () => {
 
     it('should add the value 1 in recycle icon"', async () => {
-        const pricePageContext = new reversedPricePage(driver).openPage().pageContext;
-        await pricePageContext.openNewCollection();
-        await pricePageContext.moveToItem();
-        await pricePageContext.selectSize();
-        await pricePageContext.addToCart();
-        await pricePageContext.continueShop();
-        const expectedValue = await pricePageContext.getValueFromCart();
-        assert.strictEqual(expectedValue, '1');
+        const newAddToCartContext = new reversedPricePage(driver).openPage().pageContext;
+        await newAddToCartContext.selectSize();
+        await newAddToCartContext.addToCart();
+        await newAddToCartContext.continueShop();
+        const isAddingProduct = await newAddToCartContext.isAdding();
+        await assert.isTrue(isAddingProduct);
     })
 
-    it('should change value from 650 to 5 due to filtering by size in block "650 Товары"', async () => {
+    it('should change value from 650 to 11 due to filtering by size in block "650 Товары"', async () => {
         const newInPageContext = new reservedNewInPage(driver).openPage().pageContext;
         await newInPageContext.openNewInPage();
         await newInPageContext.openSizePanel();
         await newInPageContext.selectSize();
         await newInPageContext.filterOut();
         const expectedValue = await newInPageContext.getValueFromBlock();
-        assert.strictEqual(expectedValue, '5');
+        assert.strictEqual(expectedValue, '11');
         await driver.quit();
     })
+
+   
+
+   
     });
     

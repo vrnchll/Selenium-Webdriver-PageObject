@@ -2,9 +2,19 @@ const {Builder, By, Key, until} = require('selenium-webdriver');
 
 module.exports = class reversedAddToCartPage {
     driver;
-    PAGE_URL = 'https://www.reserved.com/ru/ru/';
+    PAGE_URL = 'https://www.reserved.com/ru/ru/yt857-05x/yt857-05x-t03-plaszcz-k-re';
     pageContext;
   
+selectedSize = By.xpath('//span[contains(text(),\'36 I RU 44\')]');
+
+chooseSize = By.className('size-selected');
+close = By.className('close');
+addingToCart = By.className('sc-gqjmRU bXRaMh');
+continueShopping = By.className('continue-shopping');
+
+moveToCart = By.linkText('В корзину');
+addingProduct = By.linkText('Утепленное пальто');
+
       constructor(driver) {
         this.driver = driver;
       }
@@ -15,48 +25,32 @@ module.exports = class reversedAddToCartPage {
         return this.pageContext;
       }
 
-      async openNewCollection() {
-        const openButton = await this.driver.findElement(By.className('sc-hjRWVT gNdero menu-submenu type-default level-0'));
-        await openButton.click();
-        return this.pageContext;
-      }
-  
-      async moveToItem()  {
-        const moveButton = await this.driver.findElement(By.xpath('//*[@id="page"]/section/div/section[6]/div/div[1]'));
-        await moveButton.click();
-        const closeButton = await this.driver.wait(until.elementLocated(By.xpath('//*[@id="newsletterContainer"]/div[1]')));
-        await closeButton.click();
-        return this.pageContext;
-       }
-    
-  
        async selectSize() {
-        const selectedSizeButton = this.driver.findElement(By.css('#productContainer > section > section.size-picker > div > div.size-selected'));
+        const selectedSizeButton = this.driver.findElement(this.chooseSize);
         await selectedSizeButton.click();
-        const selectOneSize = this.driver.findElement(By.css('#productContainer > section > section.size-picker > div > div.size-list-overlay.visible > div > div:nth-child(2) > div:nth-child(1) > ul > li:nth-child(1)'));
+        const selectOneSize = await this.driver.wait(until.elementLocated(this.selectedSize),3000);
         await selectOneSize.click();
         return this.pageContext;
       }
   
       async addToCart()
         {
-            const cartButton = await this.driver.findElement(By.className('sc-gqjmRU bXRaMh'));
+            const cartButton = await this.driver.findElement(this.addingToCart);
             await cartButton.click();
             return this.pageContext;
         }
   
       async continueShop()
         {
-          await this.driver.wait(until.elementLocated(By.className('continue-shopping')));
-          const continueButton = await this.driver.findElement(By.className('continue-shopping'));
-          await continueButton.click();
+          const movingToCart = await this.driver.wait(until.elementLocated(this.moveToCart),5000);
+          await movingToCart.click();
           return this.pageContext;
 
         }
   
-      async getValueFromCart() {
+      async isAdding() {
         await this.driver.sleep(3000);
-        let receivedValue = await this.driver.wait(until.elementLocated(By.className('sc-jWojfa kHdrZe'))).getText();
-        return receivedValue;
+        const adding = await this.driver.findElement(this.addingProduct);
+        return adding.isDisplayed().then(e => e);
     }
   }
